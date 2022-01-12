@@ -1,0 +1,17 @@
+version: "3.8"
+
+# start redis service
+services:
+  redis:
+    container_name: redis
+    image: redis:6.2-alpine
+    ports:
+      - 6379:6379
+  
+  # dashboard:
+  #   container_name: rq-dashboard
+  #   image: eoranged/rq-dashboard
+  #   ports: 
+  #     - 9181:9181
+    # depends_on:
+    #   - redis
