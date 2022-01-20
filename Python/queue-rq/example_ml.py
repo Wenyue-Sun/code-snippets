@@ -2,9 +2,7 @@ from rq import Queue, Connection
 import os, time
 
 # from ml.ml1 import run_ml
-from ml.ml2 import run_ml
-
-
+from ml.automl1 import run_ml
 
 
 def main():

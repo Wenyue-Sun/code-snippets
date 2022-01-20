@@ -12,14 +12,13 @@ from fib import slow_fib
 
 def main():
     # Range of Fibonacci numbers to compute
-    fib_range = range(31, 36)
-    # fib_range = [36, 36, 36, 36, 36, 36]
+    fib_range = range(20, 30)
 
     # Kick off the tasks asynchronously
     async_results = {}
     q = Queue()
     for x in fib_range:
-        async_results[x] = q.enqueue(slow_fib, x)
+        async_results[x] = q.enqueue(slow_fib, x, job_timeout=5, result_ttl=10)
 
     start_time = time.time()
     done = False
@@ -29,6 +28,7 @@ def main():
         done = True
         for x in fib_range:
             result = async_results[x].return_value
+            
             if result is None:
                 done = False
                 result = '(calculating)'
